@@ -1,4 +1,12 @@
 package com.gustavocamargo.desafioremessa.infrastructure.persistence.repository;
 
-public interface CateiraJpaRepository {
+import com.gustavocamargo.desafioremessa.infrastructure.persistence.entity.CarteiraEntity;
+import com.gustavocamargo.desafioremessa.infrastructure.persistence.entity.UsuarioEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface CateiraJpaRepository extends JpaRepository<CarteiraEntity, UUID> {
 }
