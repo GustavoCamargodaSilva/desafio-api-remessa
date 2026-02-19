@@ -1,0 +1,8 @@
+1 - As moedas no enum dificulta a manutenção, pois para adicionar uma nova moeda é necessário modificar o código-fonte do enum, o que pode levar a erros e problemas de compatibilidade.
+Além disso, se a aplicação precisar lidar com um grande número de moedas, o enum pode se tornar difícil de gerenciar e manter.
+
+2 - Poderia criar os campos em ingles seguindo o padrao internacional de desenvolvimento de software,
+isso facilitaria a compreensão do código por parte de desenvolvedores de diferentes países e aumentaria a interoperabilidade com outras aplicações e sistemas. Mas, vou criar em portugues
+para facilitar o entendimento do código por se tratar de um desafio tecnico em português.
+
+3 - Get e sets de senha expostos e facilmente acessíveis.
