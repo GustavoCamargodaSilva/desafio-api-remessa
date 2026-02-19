@@ -22,23 +22,33 @@ public class RemessaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(nullable = false, unique = true)
     private String idempotencyKey;
+
     @Column(nullable = false)
     private UUID usuarioOrigemId;
+
     @Column(nullable = false)
     private UUID usuarioDestinoId;
+
     @Column(nullable = false)
     private BigDecimal valor;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Moeda moedaOrigem;
+
     @Column(nullable = false)
     private BigDecimal valorConvertido;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Moeda moedaDestino;
-    @Column(nullable = false, unique = true)
+
+    @Column(nullable = false)
     private BigDecimal cotacaoUtilizada;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusRemessa status;

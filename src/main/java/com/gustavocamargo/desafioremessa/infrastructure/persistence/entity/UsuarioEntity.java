@@ -22,19 +22,26 @@ public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(nullable = false)
     private String nomeCompleto;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String senha;
+
     @Column(unique = true)
     private String cpf;
+
     @Column(unique = true)
     private String cnpj;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipoUsuario;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
 

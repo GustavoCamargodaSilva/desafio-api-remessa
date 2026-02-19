@@ -22,17 +22,21 @@ public class CarteiraEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column (nullable = false)
     private BigDecimal saldo;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
+
     private LocalDateTime dataAtualizacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private UUID usuarioId;
+    private UsuarioEntity usuario;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Moeda moeda;
 
     @PrePersist

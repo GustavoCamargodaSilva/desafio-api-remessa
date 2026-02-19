@@ -22,13 +22,18 @@ public class ConfiguracaoLimiteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     @Column(nullable = false)
     private BigDecimal limiteDiario;
+
     @Column(nullable = false)
     private Boolean ativo;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime dataCriacao;
+
     private LocalDateTime dataAtualizacao;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipoUsuario;
