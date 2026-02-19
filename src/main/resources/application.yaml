@@ -1,3 +1,64 @@
+# Configurações da aplicação Spring Boot
 spring:
+  # Nome da aplicação Spring
   application:
     name: desafioremessa
+
+  # Configurações do banco de dados
+  datasource:
+    # URL de conexão ao banco de dados H2 em memória com modo compatível com PostgreSQL -1 significa que o banco de dados permanecerá ativo mesmo após a última conexão ser fechada
+    url: jdbc:h2:mem:remessadb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    # Driver JDBC do banco de dados H2
+    driver-class-name: org.h2.Driver
+    # Usuário para autenticação no banco de dados
+    username: sa
+    # Senha para autenticação no banco de dados (vazia por padrão)
+    password:
+
+  # Configurações do console H2 (ferramenta web para visualizar o banco de dados)
+  h2:
+    console:
+      # Habilita o console H2
+      enabled: true
+      # Caminho de acesso ao console (http://localhost:8080/h2-console)
+      path: /h2-console
+
+  # Configurações do JPA/Hibernate (ORM - Object-Relational Mapping)
+  jpa:
+    hibernate:
+      # Estratégia de DDL automático: create-drop cria tabelas na inicialização e as remove ao desligar
+      ddl-auto: create-drop
+    # Exibe as queries SQL executadas no console
+    show-sql: true
+    properties:
+      hibernate:
+        # Formata o SQL exibido para melhor legibilidade
+        format_sql: true
+
+  # Configurações do Redis (cache distribuído)
+  data:
+    redis:
+      # Host do servidor Redis (padrão: localhost)
+      host: ${REDIS_HOST:localhost}
+      # Porta do servidor Redis (padrão: 6379)
+      port: ${REDIS_PORT:6379}
+
+  # Configurações de cache da aplicação
+  cache:
+    # Tipo de cache utilizado: Redis
+    type: redis
+    redis:
+      # Tempo de vida do cache em milissegundos (3600000 ms = 1 hora) Talvez pudesse ser 24 horas, mas para fins de teste, 1 hora é suficiente
+      time-to-live: 3600000
+
+# Configurações do servidor web (Tomcat)
+server:
+  # Porta na qual a aplicação será executada (http://localhost:8080)
+  port: 8080
+
+# Configurações customizadas para a API do Banco Central do Brasil
+bcb:
+  api:
+    # URL base da API PTAX (Paridade Taxa) do Banco Central para consultar cotações
+    url: https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata
+
