@@ -1,4 +1,14 @@
 package com.gustavocamargo.desafioremessa.application.dto.request;
 
-public record RealizarRemessaRequest() {
-}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import java.math.BigDecimal;
+import java.util.UUID;
+
+public record RealizarRemessaRequest(
+        @NotNull UUID usuarioOrigemId,
+        @NotNull UUID usuarioDestinoId,
+        @NotNull @Positive BigDecimal valor,
+        @NotBlank String idempotencyKey
+) {}
