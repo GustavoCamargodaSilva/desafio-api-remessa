@@ -15,5 +15,5 @@ public interface UsuarioRepositoryPort {
 
     boolean existsByCnpj(@CNPJ String cnpj);
 
-    UsuarioResponse save(Usuario usuario);
+    Usuario save(Usuario usuario);
 }

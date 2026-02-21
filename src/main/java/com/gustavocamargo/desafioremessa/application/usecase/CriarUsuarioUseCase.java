@@ -6,7 +6,6 @@ import com.gustavocamargo.desafioremessa.domain.entity.Usuario;
 import com.gustavocamargo.desafioremessa.domain.enums.TipoUsuario;
 import com.gustavocamargo.desafioremessa.domain.exception.UsuarioJaExisteException;
 import com.gustavocamargo.desafioremessa.domain.repository.UsuarioRepositoryPort;
-import com.gustavocamargo.desafioremessa.infrastructure.persistence.mapper.UsuarioMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +13,10 @@ import org.springframework.stereotype.Service;
 public class CriarUsuarioUseCase {
 
     private final UsuarioRepositoryPort usuarioRepositoryPort;
-    private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public CriarUsuarioUseCase(UsuarioRepositoryPort usuarioRepositoryPort, UsuarioMapper usuarioMapper, PasswordEncoder passwordEncoder) {
+    public CriarUsuarioUseCase(UsuarioRepositoryPort usuarioRepositoryPort, PasswordEncoder passwordEncoder) {
         this.usuarioRepositoryPort = usuarioRepositoryPort;
-        this.usuarioMapper = usuarioMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -27,7 +24,12 @@ public class CriarUsuarioUseCase {
         validarDocumento(request);
         validarDuplicidades(request);
         Usuario usuario = converteRequestToEntity(request);
-        return usuarioRepositoryPort.save(usuario);
+
+        //criarCarteiraUseCase.executar(salvo.getId(), Moeda.BRL); //
+        //criarCarteiraUseCase.executar(salvo.getId(), Moeda.USD); //
+
+        usuario = usuarioRepositoryPort.save(usuario);
+        return new UsuarioResponse(usuario.getId(), usuario.getNomeCompleto(), usuario.getEmail(), usuario.getTipoUsuario(), usuario.getDataCriacao());
     }
 
     private void validarDocumento(CriarUsuarioRequest request) {
