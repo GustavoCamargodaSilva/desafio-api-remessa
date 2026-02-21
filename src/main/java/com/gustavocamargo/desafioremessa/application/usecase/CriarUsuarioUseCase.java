@@ -4,6 +4,7 @@ import com.gustavocamargo.desafioremessa.application.dto.request.CriarUsuarioReq
 import com.gustavocamargo.desafioremessa.application.dto.response.UsuarioResponse;
 import com.gustavocamargo.desafioremessa.domain.entity.Usuario;
 import com.gustavocamargo.desafioremessa.domain.enums.TipoUsuario;
+import com.gustavocamargo.desafioremessa.domain.exception.DocumentoInvalidoException;
 import com.gustavocamargo.desafioremessa.domain.exception.UsuarioJaExisteException;
 import com.gustavocamargo.desafioremessa.domain.repository.UsuarioRepositoryPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,11 +35,11 @@ public class CriarUsuarioUseCase {
 
     private void validarDocumento(CriarUsuarioRequest request) {
         if (request.tipoUsuario() == TipoUsuario.PF && request.cpf() == null) {
-            throw new IllegalArgumentException("O campo 'documento' é obrigatório.");
+            throw new DocumentoInvalidoException("O campo 'documento' é obrigatório.");
         }
 
         if (request.tipoUsuario() == TipoUsuario.PJ && request.cnpj() == null) {
-            throw new IllegalArgumentException("O campo 'documento' é obrigatório.");
+            throw new DocumentoInvalidoException("O campo 'documento' é obrigatório.");
         }
     }
 
